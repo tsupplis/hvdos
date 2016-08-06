@@ -306,7 +306,7 @@ int DOSKernel::
 int21Func25()
 {
 #ifdef DEBUG
-    std::fprintf(stderr, "[%04x] SET INTERRUPT VECTOR: 0x%02x to 0x%04x:0x%04x\n", pc, AL, DS, DX);
+    std::fprintf(stderr, "[%04x] SET INTERRUPT VECTOR: 0x%02x to 0x%04llx:0x%04x\n", pc, AL, DS, DX);
 #endif
     return STATUS_HANDLED;
 }
