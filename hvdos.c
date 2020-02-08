@@ -112,16 +112,12 @@ main(int argc, char **argv)
 	}
 
 	/* vCPU setup */
-#define VMCS_PRI_PROC_BASED_CTLS_HLT           (1 << 7)
-#define VMCS_PRI_PROC_BASED_CTLS_CR8_LOAD      (1 << 19)
-#define VMCS_PRI_PROC_BASED_CTLS_CR8_STORE     (1 << 20)
-
 	/* set VMCS control fields */
     wvmcs(vcpu, VMCS_CTRL_PIN_BASED, cap2ctrl(vmx_cap_pinbased, 0));
     wvmcs(vcpu, VMCS_CTRL_CPU_BASED, cap2ctrl(vmx_cap_procbased,
-                                                   VMCS_PRI_PROC_BASED_CTLS_HLT |
-                                                   VMCS_PRI_PROC_BASED_CTLS_CR8_LOAD |
-                                                   VMCS_PRI_PROC_BASED_CTLS_CR8_STORE));
+                                                   CPU_BASED_HLT |
+                                                   CPU_BASED_CR8_LOAD |
+                                                   CPU_BASED_CR8_LOAD));
 	wvmcs(vcpu, VMCS_CTRL_CPU_BASED2, cap2ctrl(vmx_cap_procbased2, 0));
 	wvmcs(vcpu, VMCS_CTRL_VMENTRY_CONTROLS, cap2ctrl(vmx_cap_entry, 0));
 	wvmcs(vcpu, VMCS_CTRL_EXC_BITMAP, 0xffffffff);
