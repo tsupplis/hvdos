@@ -117,7 +117,7 @@ main(int argc, char **argv)
     wvmcs(vcpu, VMCS_CTRL_CPU_BASED, cap2ctrl(vmx_cap_procbased,
                                                    CPU_BASED_HLT |
                                                    CPU_BASED_CR8_LOAD |
-                                                   CPU_BASED_CR8_LOAD));
+                                                   CPU_BASED_CR8_STORE));
 	wvmcs(vcpu, VMCS_CTRL_CPU_BASED2, cap2ctrl(vmx_cap_procbased2, 0));
 	wvmcs(vcpu, VMCS_CTRL_VMENTRY_CONTROLS, cap2ctrl(vmx_cap_entry, 0));
 	wvmcs(vcpu, VMCS_CTRL_EXC_BITMAP, 0xffffffff);
