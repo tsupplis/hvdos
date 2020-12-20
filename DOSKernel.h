@@ -60,7 +60,10 @@ private:
     int int21Func41();
     int int21Func42();
     int int21Func43();
+    int int21Func4A();
+    int int21Func4B();
     int int21Func4C();
+    int int21Func4D();
     int int21Func4E();
     int int21Func4F();
     int int21Func57();

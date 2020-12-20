@@ -148,6 +148,7 @@ int21()
 #endif
 
     switch (AH) {
+        case 0x00: return int21Func4C();
         case 0x02: return int21Func02();
         case 0x08: return int21Func08();
         case 0x09: return int21Func09();
@@ -169,7 +170,10 @@ int21()
         case 0x41: return int21Func41();
         case 0x42: return int21Func42();
         case 0x43: return int21Func43();
+        case 0x4A: return int21Func4A();
+        case 0x4B: return int21Func4B();
         case 0x4C: return int21Func4C();
+        case 0x4D: return int21Func4D();
         case 0x4E: return int21Func4E();
         case 0x4F: return int21Func4F();
         case 0x57: return int21Func57();
@@ -279,6 +283,7 @@ makePSP(uint16_t seg, int argc, char **argv)
     // CPMExit: INT 20h
     PSP->CPMExit[0] = 0xcd;
     PSP->CPMExit[1] = 0x20;
+    PSP->FirstFreeSegment = 0x23D6 + 0x2D89 + 0x0CF8+0x110;
 
     // DOS Far Call: INT 21h + RETF
     PSP->DOSFarCall[0] = 0xcd;
@@ -657,6 +662,48 @@ int21Func4F()
 #endif
     SET_AX(0x12); // no more files
     SETC(1);
+
+    return STATUS_HANDLED;
+}
+
+// DOS 2+ - FINDNEXT - FIND NEXT MATCHING FILE
+int DOSKernel::
+int21Func4A()
+{
+    // TODO
+#if DEBUG
+    std::fprintf(stderr, "\nUNIMPL Resize\n");
+#endif
+//    SET_AX(0x12); // no more files
+//    SETC(1);
+
+    return STATUS_HANDLED;
+}
+
+// DOS 2+ - FINDNEXT - FIND NEXT MATCHING FILE
+int DOSKernel::
+int21Func4B()
+{
+    // TODO
+#if DEBUG
+    std::fprintf(stderr, "\nUNIMPL Exec\n");
+#endif
+//    SET_AX(0x12); // no more files
+//    SETC(1);
+
+    return STATUS_HANDLED;
+}
+
+// DOS 2+ - FINDNEXT - FIND NEXT MATCHING FILE
+int DOSKernel::
+int21Func4D()
+{
+    // TODO
+#if DEBUG
+    std::fprintf(stderr, "\nUNIMPL Get exit code\n");
+#endif
+//    SET_AX(0x12); // no more files
+//    SETC(1);
 
     return STATUS_HANDLED;
 }
